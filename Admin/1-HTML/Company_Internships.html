@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Internships</title>
+  <link rel="stylesheet" href="/company/2-CSS/admin.css">
+</head>
+<body>
+  <div class="top-nav">
+  <div class="nav-left">
+      <a href="/company/dashboard">Dashboard</a>
+      <a href="/company/create_internship">Post Internship</a>
+      <a href="/company/internships">My Internships</a>
+      <a href="/company/applications">Applications</a>
+      <a href="/company/profile">Profile</a>
+    </div>
+  <div class="nav-right">
+    <a href="/company/logout" class="logout-btn">Logout</a>
+  </div>
+</div>
+
+  <div class="table-container wide">
+    <h2>My Posted Internships</h2>
+    <p id="msg" class="msg"></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Location</th>
+          <th>Salary</th>
+          <th>Deadline</th>
+          <th>Applications</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="rows">
+        <tr><td colspan="7" style="text-align:center">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const tbody = document.getElementById('rows');
+    const msg = document.getElementById('msg');
+    const params = new URLSearchParams(location.search);
+    if (params.get('posted')) { msg.style.color = '#0a7a2f'; msg.textContent = 'Internship posted!'; }
+
+    function td(text) { const c = document.createElement('td'); c.textContent = text ?? ''; return c; }
+
+    async function remove(id) {
+      if (!confirm('Delete this internship and all applications to it?')) return;
+      const res = await fetch('/api/company/internships/' + id, { method: 'DELETE' });
+      if (res.ok) load();
+      else { msg.style.color = '#b00020'; msg.textContent = 'Could not delete internship.'; }
+    }
+
+    async function load() {
+      const res = await fetch('/api/company/internships');
+      if (res.status === 401) { location.href = '/company/login'; return; }
+      const rows = await res.json();
+      tbody.innerHTML = '';
+      if (!rows.length) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center">You have not posted any internships yet.</td></tr>';
+        return;
+      }
+      rows.forEach(r => {
+        const tr = document.createElement('tr');
+        const del = document.createElement('button');
+        del.type = 'button'; del.textContent = 'Delete'; del.className = 'danger';
+        del.addEventListener('click', () => remove(r.id));
+        const last = document.createElement('td'); last.appendChild(del);
+        tr.append(td(r.title), td(r.type), td(r.location), td(r.salary), td(r.deadline),
+                  td(r.application_count), last);
+        tbody.appendChild(tr);
+      });
+    }
+    load().catch(() => { tbody.innerHTML = '<tr><td colspan="7">Could not load internships.</td></tr>'; });
+  </script>
+</body>
+</html>

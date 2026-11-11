@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Company Login</title>
+  <link rel="stylesheet" href="/company/2-CSS/admin.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Company Login</h2>
+
+    <p id="msg" style="text-align:center;font-weight:bold;color:#b00020;"></p>
+    <script>
+      (function () {
+        var p = new URLSearchParams(location.search), m = document.getElementById('msg');
+        if (p.get('error')) m.textContent = p.get('error');
+        else if (p.get('registered')) { m.style.color = '#0a7a2f'; m.textContent = 'Account created! Please log in.'; }
+      })();
+    </script>
+    <form action="/company/login" method="POST" id="loginForm">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required minlength="6" />
+
+      <button type="submit">Login</button>
+    </form>
+    <p style="text-align: center;">Don't have an account? <a href="/company/signup">Register here</a></p>
+  </div>
+
+  <script src="/company/admin.js"></script>
+</body>
+</html>

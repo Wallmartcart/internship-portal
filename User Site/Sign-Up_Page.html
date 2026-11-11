@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign-Up</title>
+  <link rel="stylesheet" href="/user/css/Sign-Up_n_login_Page.css">
+  <link rel="stylesheet" href="/user/css/profile_page.css">
+</head>
+<body>
+    <main>
+
+      <p id="msg" style="text-align:center;font-weight:bold;color:#b00020;"></p>
+      <script>
+        (function () {
+          var p = new URLSearchParams(location.search), m = document.getElementById('msg');
+          if (p.get('error')) m.textContent = p.get('error');
+          else if (p.get('registered')) { m.style.color = '#0a7a2f'; m.textContent = 'Account created! Please log in.'; }
+        })();
+      </script>
+      <!-- FIXED: updated action to /user/signup -->
+      <form method="POST" action="/user/signup" class="profile-form">
+        <label>
+          Name:<br>
+          <input type="text" name="full_name" placeholder="Full Name" required><br>
+        </label><br><br>
+
+        <label>
+          Email:<br>
+          <input type="email" name="email" placeholder="Sign-Up Email" required><br>
+        </label><br><br>
+
+        <label>
+          Password:<br>
+          <input type="password" name="password" placeholder="Sign-Up Password" required><br>
+        </label><br><br>
+
+        <!-- You can remove this unless you're editing a profile -->
+        <!-- <input type="hidden" name="currentEmail" value="{email}" /> -->
+
+        <button type="submit">Sign up</button>
+      </form>
+      <p style="text-align:center">Already registered? <a href="/user/login">Log in</a></p>
+    </main>
+</body>
+</html>
+

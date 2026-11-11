@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>My Applications</title>
+    <link rel="stylesheet" href="/user/css/internship_page.css" />
+    <link rel="stylesheet" href="/user/css/application_page.css" />
+</head>
+<body>
+    <header class="header-container">
+        <nav>
+            <a href="/student/dashboard" class="profile_page">Home</a>
+        </nav>
+        <h1>My Applications</h1>
+        <nav>
+            <a href="/user/logout" class="logout">Logout</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="filter-container">
+            <h2>Application Status</h2>
+            
+            <div id="application-stats">
+                <p><strong>Total Applications:</strong> <span id="total-count">0</span></p>
+                <p><strong>Pending:</strong> <span id="pending-count">0</span></p>
+                <p><strong>Submitted:</strong> <span id="completed-count">0</span></p>
+            </div>
+
+            <div class="filter-buttons" style="margin-top: 30px;">
+                <button id="show-all-btn" class="active">Show All</button>
+                <button id="show-pending-btn">Pending Only</button>
+                <button id="show-completed-btn">Submitted Only</button>
+            </div>
+
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <h3>Quick Actions</h3>
+                <a href="/user/internships" style="color: #007bff; text-decoration: none; font-weight: bold;">
+                    📋 Browse More Internships
+                </a>
+            </div>
+        </div>
+
+        <div class="internship-list" id="application-list">
+            <!-- Applications will be loaded here -->
+        </div>
+    </div>
+    <script src="/user/js/application_page.js"></script>
+</body>
+</html>

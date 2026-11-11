@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="/user/css/profile_page.css">
+</head>
+<body>
+    <header class="header-container">
+        <h1 class="profile_info">Welcome to the profile page<br> <%= user.full_name %>!</h1>
+        <nav>
+            <a href="/student/dashboard" class="profile_page">Home</a>
+            <a href="/user/logout" class="logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <% if (error) { %><p style="text-align:center;font-weight:bold;color:#b00020;"><%= error %></p><% } %>
+        <% if (saved) { %><p style="text-align:center;font-weight:bold;color:#0a7a2f;">Profile updated!</p><% } %>
+        <form method="POST" action="/user/profile" class="profile-form">
+        <label>
+          Name:<br>
+          <input type="text" name="full_name" value="<%= user.full_name %>" required>
+        </label><br><br>
+
+        <label>
+          Email:<br>
+          <input type="email" name="email" value="<%= user.email %>" required>
+        </label><br><br>
+
+        <label>
+          Password:<br>
+          <input type="password" name="password" placeholder="Leave blank to keep current password">
+        </label><br><br>
+
+        <!-- Hidden field to identify the user by current email -->
+        <input type="hidden" name="currentEmail" value="<%= user.email %>" />
+
+        <button type="submit">Update Profile</button>
+      </form>
+    </main>
+</body>
+</html>

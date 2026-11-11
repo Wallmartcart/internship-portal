@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Applications</title>
+  <link rel="stylesheet" href="/company/2-CSS/admin.css">
+</head>
+<body>
+  <div class="top-nav">
+  <div class="nav-left">
+      <a href="/company/dashboard">Dashboard</a>
+      <a href="/company/create_internship">Post Internship</a>
+      <a href="/company/internships">My Internships</a>
+      <a href="/company/applications">Applications</a>
+      <a href="/company/profile">Profile</a>
+    </div>
+  <div class="nav-right">
+    <a href="/company/logout" class="logout-btn">Logout</a>
+  </div>
+</div>
+
+  <div class="table-container wide">
+    <h2>Student Internship Applications</h2>
+    <p id="status-msg" class="msg"></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Email</th>
+          <th>Internship Title</th>
+          <th>Application</th>
+          <th>Status</th>
+          <th>Update Status</th>
+        </tr>
+      </thead>
+      <tbody id="app-rows">
+        <tr><td colspan="6" style="text-align:center">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const STATUSES = ['Pending', 'Shortlisted', 'Accepted', 'Rejected'];
+    const tbody = document.getElementById('app-rows');
+    const msg = document.getElementById('status-msg');
+
+    function cell(content) {
+      const td = document.createElement('td');
+      if (content instanceof Node) td.appendChild(content);
+      else td.textContent = content ?? '';
+      return td;
+    }
+
+    function detailsNode(a) {
+      const d = document.createElement('details');
+      const sum = document.createElement('summary');
+      sum.textContent = 'View';
+      d.appendChild(sum);
+      const lines = [
+        ['Applied', a.applied_at ? new Date(a.applied_at).toLocaleString() : ''],
+        ['Phone', a.phone],
+        ['University', a.university],
+        ['Major', a.major],
+        ['Cover letter', a.cover_letter],
+        ['Experience', a.experience]
+      ];
+      lines.forEach(([label, value]) => {
+        if (!value) return;
+        const p = document.createElement('p');
+        p.style.margin = '6px 0';
+        const b = document.createElement('strong');
+        b.textContent = label + ': ';
+        p.appendChild(b);
+        p.appendChild(document.createTextNode(value));
+        d.appendChild(p);
+      });
+      return d;
+    }
+
+    async function updateStatus(id, status, statusCell) {
+      msg.textContent = '';
+      const res = await fetch('/api/company/applications/' + id + '/status', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (res.ok) {
+        statusCell.textContent = status;
+        msg.style.color = '#0a7a2f';
+        msg.textContent = 'Status updated to ' + status + '.';
+      } else {
+        const err = await res.json().catch(() => ({}));
+        msg.style.color = '#b00020';
+        msg.textContent = err.error || 'Could not update status.';
+      }
+    }
+
+    async function load() {
+      const res = await fetch('/api/company/applications');
+      if (res.status === 401) { location.href = '/company/login'; return; }
+      const apps = await res.json();
+      tbody.innerHTML = '';
+      if (!apps.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No applications received yet.</td></tr>';
+        return;
+      }
+      apps.forEach(a => {
+        const tr = document.createElement('tr');
+        const statusCell = cell(a.status);
+
+        const select = document.createElement('select');
+        STATUSES.forEach(st => {
+          const o = document.createElement('option');
+          o.value = st; o.textContent = st; o.selected = st === a.status;
+          select.appendChild(o);
+        });
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Update';
+        btn.addEventListener('click', () => updateStatus(a.id, select.value, statusCell));
+        const wrap = document.createElement('div');
+        wrap.className = 'inline-update';
+        wrap.append(select, btn);
+
+        tr.append(cell(a.student_name), cell(a.student_email), cell(a.internship_title),
+                  cell(detailsNode(a)), statusCell, cell(wrap));
+        tbody.appendChild(tr);
+      });
+    }
+    load().catch(() => { tbody.innerHTML = '<tr><td colspan="6">Could not load applications.</td></tr>'; });
+  </script>
+</body>
+</html>

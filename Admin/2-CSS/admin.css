@@ -1,0 +1,212 @@
+/* ======================
+   GLOBAL STYLES
+====================== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ======================
+   FORM CONTAINERS
+====================== */
+.form-container, .dashboard-container, .table-container {
+  max-width: 500px;
+  margin: 60px auto;
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ======================
+   FORMS
+====================== */
+form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* ======================
+   DASHBOARD LINKS
+====================== */
+nav.admin-nav ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+nav.admin-nav ul li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+nav.admin-nav ul li a {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ======================
+   TABLES
+====================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+th {
+  background-color: #f8f9fa;
+}
+
+/* ======================
+   LOGOUT PAGE
+====================== */
+.logout-message {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 20px;
+  color: #333;
+}
+/* ======================
+   TOP NAVIGATION BAR
+====================== */
+
+.top-nav {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.nav-left a {
+  margin-right: 20px;
+  font-weight: 500;
+  color: #007bff;
+}
+
+.nav-left a:hover {
+  color: #0056b3;
+}
+
+.nav-right .logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 14px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.nav-right .logout-btn:hover {
+  background-color: #c0392b;
+}
+
+/* ======================
+   ADDED: wide tables, messages, textarea, small buttons
+====================== */
+.table-container.wide {
+  max-width: 1100px;
+}
+
+.msg {
+  text-align: center;
+  font-weight: bold;
+  min-height: 1.2em;
+}
+
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.inline-update {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.inline-update select,
+.inline-update button,
+td button {
+  width: auto;
+  margin: 0;
+  padding: 6px 12px;
+}
+
+td button.danger {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+details summary {
+  cursor: pointer;
+  color: #007bff;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Company Profile</title>
+  <link rel="stylesheet" href="/company/2-CSS/admin.css">
+</head>
+<body>
+  <div class="top-nav">
+    <div class="nav-left">
+      <a href="/company/dashboard">Dashboard</a>
+      <a href="/company/create_internship">Post Internship</a>
+      <a href="/company/internships">My Internships</a>
+      <a href="/company/applications">Applications</a>
+      <a href="/company/profile">Profile</a>
+    </div>
+    <div class="nav-right">
+      <a href="/company/logout" class="logout-btn">Logout</a>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <h2>Edit Company Profile</h2>
+    <% if (error) { %><p style="text-align:center;font-weight:bold;color:#b00020;"><%= error %></p><% } %>
+    <% if (saved) { %><p style="text-align:center;font-weight:bold;color:#0a7a2f;">Profile updated!</p><% } %>
+    <form action="/company/profile" method="POST" id="profileForm">
+      <label for="company_name">Company Name</label>
+      <input
+        type="text"
+        id="company_name"
+        name="company_name"
+        value="<%= company.company_name %>"
+        required
+      />
+
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value="<%= company.email %>"
+        required
+      />
+
+      <label for="location">Location</label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        value="<%= company.location %>"
+        required
+      />
+
+      <label for="industry">Industry</label>
+      <input
+        type="text"
+        id="industry"
+        name="industry"
+        value="<%= company.industry %>"
+      />
+
+      <button type="submit">Update Profile</button>
+    </form>
+  </div>
+
+  <script src="/company/admin.js"></script>
+</body>
+</html>

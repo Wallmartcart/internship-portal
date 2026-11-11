@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Internships</title>
+    <link rel="stylesheet" href="/user/css/internship_page.css" />
+</head>
+<body>
+    <header class="header-container">
+        <nav>
+            <a href="/student/dashboard" class="profile_page">Home</a>
+        </nav>
+        <h1>Available Internships</h1>
+        <nav>
+            <a href="/user/logout" class="logout">Logout</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="filter-container">
+            <h2>Filter Internships</h2>
+
+            <label for="filter-input">Search</label>
+            <input type="text" id="filter-input" placeholder="Search by title, company, or description..." />
+
+            <label for="industry-filter">Industry</label>
+            <select id="industry-filter">
+                <option value="">All Industries</option>
+                <option value="Technology">Technology</option>
+                <option value="Finance">Finance</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Automotive">Automotive</option>
+                <option value="E-commerce">E-commerce</option>
+            </select>
+
+            <label for="work-type-filter">Work Type</label>
+            <select id="work-type-filter">
+                <option value="">All Work Types</option>
+                <option value="On-site">On-site</option>
+                <option value="Remote">Remote</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+
+            <label for="location-filter">Location</label>
+            <input type="text" id="location-filter" placeholder="Enter location..." />
+
+            <label for="salary-filter">Minimum Salary (monthly)</label>
+            <input type="number" id="salary-filter" placeholder="e.g. 5000" />
+
+            <label for="sort-by">Sort By</label>
+            <select id="sort-by">
+                <option value="deadline">Deadline (Earliest First)</option>
+                <option value="company">Company Name</option>
+                <option value="position">Position Title</option>
+                <option value="location">Location</option>
+                <option value="salary">Salary (Highest First)</option>
+            </select>
+
+            <div class="filter-buttons">
+                <button id="apply-filters-btn">Apply Filters</button>
+                <button id="clear-filters-btn">Clear All</button>
+            </div>
+
+            <p id="results-count"></p>
+        </div>
+
+        <div class="internship-list" id="internship-list">
+            <!-- Internships will be injected here -->
+        </div>
+    </div>
+
+    <script src="/user/js/internship_page.js"></script>
+</body>
+</html>

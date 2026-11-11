@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post Internship</title>
+  <link rel="stylesheet" href="/company/2-CSS/admin.css">
+</head>
+<body>
+  <div class="top-nav">
+    <div class="nav-left">
+      <a href="/company/dashboard">Dashboard</a>
+      <a href="/company/create_internship">Post Internship</a>
+      <a href="/company/internships">My Internships</a>
+      <a href="/company/applications">Applications</a>
+      <a href="/company/profile">Profile</a>
+    </div>
+    <div class="nav-right">
+      <a href="/company/logout" class="logout-btn">Logout</a>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <h2>Post a New Internship</h2>
+    <p id="msg" style="text-align:center;font-weight:bold;color:#b00020;"></p>
+    <script>var e = new URLSearchParams(location.search).get('error'); if (e) document.getElementById('msg').textContent = e;</script>
+    <form action="/company/create_internship" method="POST" id="postForm">
+      <label for="title">Internship Title</label>
+      <input type="text" id="title" name="title" required />
+
+      <label for="type">Type</label>
+      <select id="type" name="type" required>
+        <option value="">--Select--</option>
+        <option value="Remote">Remote</option>
+        <option value="On-site">On-site</option>
+        <option value="Hybrid">Hybrid</option>
+      </select>
+
+      <label for="skills">Required Skills</label>
+      <input type="text" id="skills" name="skills" placeholder="e.g. HTML, CSS, Node.js" required />
+
+      <label for="duration">Duration</label>
+      <input type="text" id="duration" name="duration" placeholder="e.g. 3 months" required />
+
+      <label for="salary">Stipend / Salary</label>
+      <input type="text" id="salary" name="salary" placeholder="Optional" />
+      
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required />
+
+      <label for="industry">Industry</label>
+      <select id="industry" name="industry" required>
+        <option value="">--Select Industry--</option>
+        <option value="Technology">Technology</option>
+        <option value="Finance">Finance</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Automotive">Automotive</option>
+        <option value="E-commerce">E-commerce</option>
+      </select>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" placeholder="What will the intern work on?"></textarea>
+
+      <label for="deadline">Application Deadline</label>
+      <input type="date" id="deadline" name="deadline" required />
+
+      <button type="submit">Post Internship</button>
+    </form>
+  </div>
+
+  <script src="/company/admin.js"></script>
+</body>
+</html>

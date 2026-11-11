@@ -1,0 +1,298 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile_page {
+    background-color: #3498db;
+}
+
+.profile_page:hover {
+    background-color: #2980b9;
+}
+
+.logout {
+    background-color: #e74c3c;
+}
+
+.logout:hover {
+    background-color: #c0392b;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.main-container {
+    display: flex;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 0 20px;
+}
+
+.filter-container {
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    height: fit-content;
+    position: sticky;
+    top: 80px;
+}
+
+.filter-container h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.filter-container input,
+.filter-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.filter-container input:focus,
+.filter-container select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.filter-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#apply-filters-btn {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#apply-filters-btn:hover {
+    background-color: #27ae60;
+}
+
+#clear-filters-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#clear-filters-btn:hover {
+    background-color: #c0392b;
+}
+
+#results-count {
+    margin-top: 15px;
+    font-weight: 500;
+    color: #7f8c8d;
+    text-align: center;
+    font-size: 14px;
+}
+
+.internship-list {
+    flex: 1;
+}
+
+.internship-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative; /* so the bookmark star sits inside the card */
+    border-left: 4px solid #3498db;
+}
+
+.internship-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.company-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+.card-title-section h2 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.company-name {
+    font-size: 16px;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.description {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    line-height: 1.6;
+    color: #555;
+    font-size: 15px;
+}
+
+.card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.card-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.card-content strong {
+    color: #2c3e50;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #ecf0f1;
+    color: #555;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.bookmark-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bookmark-btn.bookmarked {
+    color: #f39c12;
+}
+
+.bookmark-btn.not-bookmarked {
+    color: #bdc3c7;
+}
+
+.bookmark-btn:hover {
+    transform: scale(1.1);
+}
+
+.no-results {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.no-results h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .filter-container {
+        width: 100%;
+        position: static;
+    }
+    
+    .card-content {
+        grid-template-columns: 1fr;
+    }
+}
